@@ -1,0 +1,2 @@
+include pyfastmath/pyfastmath.c
+include pyfastmath/pyfastmath.h
