@@ -94,6 +94,6 @@ static struct PyModuleDef fastmathmodule = {
 
 // --- Module Initialization Function ---
 
-PyMODINIT_FUNC PyInit_fastmath(void) {
+PyMODINIT_FUNC PyInit__pyfastmath(void) {
     return PyModule_Create(&fastmathmodule);
 }
