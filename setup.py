@@ -17,7 +17,7 @@ pyfastmath_module = Extension(
 
 setup(
     name='pyfastmath', # The name of your package on PyPI
-    version='1.0.0', # Current version of your package
+    version='1.0.1', # Current version of your package
     author='Gourabananda Datta', # Your name
     author_email='gourabanandadatta@gmail.com', # Your email
     description='High-performance math functions implemented in C for Python.', # Short description
