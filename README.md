@@ -48,6 +48,9 @@ print(pyfastmath,npr(5, 2))           # ➝ 20
 ```
 
 ---
+## Documentation
+
+See the full documentation from here [Docs](https://gourabanandad.github.io/pyfastmath/)
 
 ## 🚧 Requirements
 
@@ -79,6 +82,9 @@ twine upload dist/*
 This project is licensed under the [MIT License](LICENSE).
 
 ---
+## Contribution
+See the contribution guidelines [guidelines](CONTRIBUTING.md)
+
 
 ## 👨‍💻 Author
 
