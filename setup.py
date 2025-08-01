@@ -16,14 +16,14 @@ pyfastmath_module = Extension(
 )
 
 setup(
-    name='pyfastmath', # The name of your package on PyPI
-    version='1.0.1', # Current version of your package
-    author='Gourabananda Datta', # Your name
-    author_email='gourabanandadatta@gmail.com', # Your email
+    name='pyfastmath', 
+    version='1.1.2', # Current version of your package
+    author='Gourabananda Datta',
+    author_email='gourabanandadatta@gmail.com',
     description='High-performance math functions implemented in C for Python.', # Short description
     long_description=long_description, # Long description from README.md
     long_description_content_type='text/markdown', # Specify content type for README
-    url='https://github.com/gourabanandad/pyfastmath', # URL to your project's repository (update if needed)
+    url='https://github.com/gourabanandad/pyfastmath', 
     packages=find_packages(), # Automatically finds Python packages (e.g., 'pyfastmath')
     ext_modules=[pyfastmath_module], # List of C extension modules to build
     classifiers=[

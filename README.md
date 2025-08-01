@@ -1,15 +1,19 @@
 # pyfastmath
 
 🚀 **pyfastmath** is a blazing-fast math utility module for Python, written in C for maximum performance.
-It includes essential number-theoretic functions like GCD, primality checking, and modular exponentiation.
+It includes essential number-theoretic functions like GCD, primality checking, modular exponentiation and many more. Check below for more information about the features.
 
 ---
 
 ## ✨ Features
 
-* 🟰 `gcd(a, b)` – Compute the Greatest Common Divisor of two integers
-* 🔍 `is_prime(n)` – Efficiently check if a number is prime
-* 🔐 `mod_exp(base, exp, mod)` – Perform Modular Exponentiation: (base^exp) % mod
+*  `gcd(a, b)` – Compute the Greatest Common Divisor of two integers
+*  `is_prime(n)` – Efficiently check if a number is prime
+*  `mod_exp(base, exp, mod)` – Perform Modular Exponentiation: (base^exp) % mod
+*  `lcm(a, b)` – Calculate the Lowest Common Multiplicant
+*  `factorial(n)` – Calculate the factorial of a positive integer
+*  `ncr(n, r)` – Calculate the combination of two number(nCr)
+*  `npr(n, r)` – Calculate the permutation of two number(nPr)
 
 ---
 
@@ -37,6 +41,10 @@ import pyfastmath
 print(pyfastmath.gcd(48, 18))         # ➝ 6
 print(pyfastmath.is_prime(97))        # ➝ True
 print(pyfastmath.mod_exp(2, 10, 100)) # ➝ 24
+print(pyfastmath.lcm(48, 18))         # ➝ 144
+print(pyfastmath.factorial(5))        # ➝ 120
+print(pyfastmath.ncr(5,2))            # ➝ 10
+print(pyfastmath,npr(5, 2))           # ➝ 20
 ```
 
 ---
