@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyfastmath — Fast Math for Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #7209b7;
+            --background-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2b2d42;
+            --light-text: #6c757d;
+            --code-bg: #f8f9fa;
+            --code-border: #dee2e6;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 50%, #7209b7 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .page-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+        
+        .container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-top: 2rem;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            height: 1.5rem;
+            width: 6px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        strong {
+            color: var(--secondary-color);
+        }
+        
+        code, pre {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 8px;
+            overflow-x: auto;
+            font-weight: 500;
+        }
+        
+        code {
+            padding: 0.2rem 0.4rem;
+            font-size: 0.9em;
+            color: var(--accent-color);
+        }
+        
+        pre {
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        
+        pre:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        a:hover::after {
+            width: 100%;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .link-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(58, 12, 163, 0.2);
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .page-wrapper {
+                padding: 1rem;
+            }
+            
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>pyfastmath <span class="badge">v1.1.1</span></h1>
+            </div>
+            
+            <p><strong>High-performance math functions in C, wrapped for Python!</strong> Lightning-fast computations for your mathematical needs.</p>
+
+            <h2><i class="fas fa-download"></i> Installation</h2>
+            <pre><code>pip install pyfastmath</code></pre>
+
+            <h2><i class="fas fa-bolt"></i> Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>GCD & LCM</h3>
+                    <p>Compute greatest common divisor and least common multiple efficiently</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-superscript"></i></div>
+                    <h3>Modular Exponentiation</h3>
+                    <p>Fast computation of (base^exp) % mod operations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Prime Checking</h3>
+                    <p>Efficiently determine if a number is prime</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-infinity"></i></div>
+                    <h3>Combinatorics</h3>
+                    <p>Factorial, combinations (nCr), and permutations (nPr)</p>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-code"></i> Usage Example</h2>
+            <pre><code>import pyfastmath as fm
+
+# Greatest Common Divisor
+print(fm.gcd(48, 18))         # ➜ 6
+
+# Modular Exponentiation
+print(fm.mod_exp(2, 10, 1000)) # ➜ 24
+
+# Prime Number Check
+print(fm.is_prime(97))        # ➜ True
+
+# Combinatorics
+print(fm.factorial(5))        # ➜ 120
+print(fm.nCr(10, 2))          # ➜ 45
+print(fm.nPr(10, 2))          # ➜ 90</code></pre>
+
+            <h2><i class="fas fa-link"></i> Links</h2>
+            <div class="links">
+                <a href="https://pypi.org/project/pyfastmath/" class="link-button">
+                    <i class="fab fa-python"></i> PyPI Package
+                </a>
+                <a href="https://github.com/gourabanandad/pyfastmath" class="link-button">
+                    <i class="fab fa-github"></i> GitHub Repository
+                </a>
+                <a href="https://github.com/gourabanandad/pyfastmath/issues" class="link-button">
+                    <i class="fas fa-bug"></i> Report Issue
+                </a>
+                <a href="https://github.com/gourabanandad/pyfastmath/blob/main/CONTRIBUTING.md" class="link-button">
+                    <i class="fas fa-code-pull-request"></i> Contribute Here
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 pyfastmath | High-performance math functions for Python</p>
+    </footer>
+</body>
+</html>
