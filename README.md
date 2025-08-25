@@ -44,7 +44,7 @@ print(pyfastmath.mod_exp(2, 10, 100)) # ➝ 24
 print(pyfastmath.lcm(48, 18))         # ➝ 144
 print(pyfastmath.factorial(5))        # ➝ 120
 print(pyfastmath.ncr(5,2))            # ➝ 10
-print(pyfastmath,npr(5, 2))           # ➝ 20
+print(pyfastmath.npr(5, 2))           # ➝ 20
 ```
 
 ---
